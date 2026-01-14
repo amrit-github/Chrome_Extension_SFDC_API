@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Salesforce API Caller",
+  "version": "1.0",
+  "description": "Call Salesforce APIs using session ID without CORS issues",
+  "permissions": [
+    "identity",
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://*.salesforce.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
