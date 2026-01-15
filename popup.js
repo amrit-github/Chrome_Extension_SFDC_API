@@ -1,11 +1,16 @@
+import { myInstanceUrl } from "./env.js";
+
 document.getElementById('callApi').addEventListener('click', () => {
   console.log("Cookie");
+
   chrome.cookies.get({
-    url: 'https://amrit1996-dev-ed.my.salesforce.com', // Must be a full URL
+    url: myInstanceUrl, // Must be a full URL
     name: 'sid'
   }, (cookie) => {
+
     if (cookie) {
       console.log(`Found cookie:`, cookie.value);
+
       let sessionId = cookie.value;
       chrome.runtime.sendMessage({ action: 'fetchAccounts', sessionId }, (response) => {
         if (response.error) {
@@ -14,6 +19,7 @@ document.getElementById('callApi').addEventListener('click', () => {
           document.getElementById('result').textContent = JSON.stringify(response.data, null, 2);
         }
       });
+
     } else {
       console.log(`Cookie not found.`);
     }

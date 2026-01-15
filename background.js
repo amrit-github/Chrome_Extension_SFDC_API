@@ -1,7 +1,9 @@
+import { myInstanceUrl } from "./env.js";
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'fetchAccounts') {
     const sessionId = message.sessionId;
-    const instanceUrl = 'https://amrit1996-dev-ed.my.salesforce.com'; // replace with your instance
+    const instanceUrl = myInstanceUrl; // replace with your instance
 
     fetch(`${instanceUrl}/services/data/v57.0/query/?q=SELECT+Id,Name+FROM+Account+LIMIT+5`, {
       headers: {
