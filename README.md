@@ -37,6 +37,7 @@ Troubleshooting
 Notes
 - This project uses Manifest V3 with a service worker background script ([manifest.json](manifest.json) -> `background.service_worker`).
 - Designed for development and testing only. For production consider OAuth flows and least-privilege design.
+- Note that it is not safe to use Session Id for calling Salesforce API's, suggested way is to use a Connected App or ECA in Salesforce.
 
 License
 - No license file included. Add one if you intend to share
