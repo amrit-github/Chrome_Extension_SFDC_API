@@ -1,7 +1,7 @@
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'fetchAccounts') {
     const sessionId = message.sessionId;
-    const instanceUrl = 'https://YOUR_INSTANCE.salesforce.com'; // replace with your instance
+    const instanceUrl = 'https://amrit1996-dev-ed.my.salesforce.com'; // replace with your instance
 
     fetch(`${instanceUrl}/services/data/v57.0/query/?q=SELECT+Id,Name+FROM+Account+LIMIT+5`, {
       headers: {

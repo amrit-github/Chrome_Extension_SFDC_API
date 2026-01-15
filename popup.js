@@ -1,15 +1,21 @@
 document.getElementById('callApi').addEventListener('click', () => {
-  const sessionId = document.getElementById('sessionId').value.trim();
-  if (!sessionId) {
-    alert("Enter your Salesforce session ID");
-    return;
-  }
-
-  chrome.runtime.sendMessage({ action: 'fetchAccounts', sessionId }, (response) => {
-    if (response.error) {
-      document.getElementById('result').textContent = 'Error: ' + response.error;
+  console.log("Cookie");
+  chrome.cookies.get({
+    url: 'https://amrit1996-dev-ed.my.salesforce.com', // Must be a full URL
+    name: 'sid'
+  }, (cookie) => {
+    if (cookie) {
+      console.log(`Found cookie:`, cookie.value);
+      let sessionId = cookie.value;
+      chrome.runtime.sendMessage({ action: 'fetchAccounts', sessionId }, (response) => {
+        if (response.error) {
+          document.getElementById('result').textContent = 'Error: ' + response.error;
+        } else {
+          document.getElementById('result').textContent = JSON.stringify(response.data, null, 2);
+        }
+      });
     } else {
-      document.getElementById('result').textContent = JSON.stringify(response.data, null, 2);
+      console.log(`Cookie not found.`);
     }
   });
 });
