@@ -4,7 +4,7 @@ document.getElementById('callApi').addEventListener('click', () => {
   console.log("Cookie");
 
   chrome.cookies.get({
-    url: myInstanceUrl, // Must be a full URL
+    url: myInstanceUrl.instanceUrl, // Must be a full URL
     name: 'sid'
   }, (cookie) => {
 
