@@ -16,10 +16,11 @@ document.getElementById('callApi').addEventListener('click', () => {
         if (response.error) {
           document.getElementById('result').textContent = 'Error: ' + response.error;
         } else {
-          document.getElementById('result').textContent = JSON.stringify(response.data, null, 2);
+          const rawResponse = response.data; // the string you pasted
+          const parsedJson = JSON.parse(rawResponse);
+          document.getElementById('result').textContent = JSON.stringify(parsedJson, null, 2);
         }
       });
-
     } else {
       console.log(`Cookie not found.`);
     }
